@@ -2,17 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Web Page with Text Box</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Message Page</title>
   <style>
     body {
       margin: 0;
-      padding-bottom: 100px; /* Space for the fixed textbox */
+      padding-bottom: 100px; /* Reserve space for the textbox */
       font-family: Arial, sans-serif;
     }
 
-    .content {
+    .message-feed {
       padding: 20px;
+    }
+
+    .message {
+      background-color: #e1f5fe;
+      border: 1px solid #81d4fa;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
     }
 
     .textbox-container {
@@ -33,18 +41,46 @@
       padding: 10px;
       font-size: 16px;
     }
+
+    button {
+      margin-top: 5px;
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
-  <div class="content">
-    <h1>Welcome to the Web Page</h1>
-    <p>This is a basic HTML page. Scroll down to see the text box at the bottom.</p>
+  <div class="message-feed" id="messageFeed">
+    <!-- Messages will appear here -->
   </div>
 
   <div class="textbox-container">
-    <textarea placeholder="Type your message here..."></textarea>
+    <textarea id="inputBox" placeholder="Type your message here..."></textarea>
+    <button onclick="submitMessage()">Submit</button>
   </div>
+
+  <script>
+    function submitMessage() {
+      const input = document.getElementById('inputBox');
+      const feed = document.getElementById('messageFeed');
+
+      const text = input.value.trim();
+      if (text === "") return;
+
+      // Create new message div
+      const message = document.createElement('div');
+      message.className = 'message';
+      message.textContent = text;
+
+      // Insert at the top of the feed
+      feed.insertBefore(message, feed.firstChild);
+
+      // Clear textbox
+      input.value = "";
+    }
+  </script>
 
 </body>
 </html>
