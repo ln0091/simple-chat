@@ -65,7 +65,8 @@
     function submitMessage() {
       const input = document.getElementById('inputBox');
       const feed = document.getElementById('messageFeed');
-
+      with open("chat.txt", "a") as f:
+        f.print(input)
       const text = input.value.trim();
       if (text === "") return;
 
