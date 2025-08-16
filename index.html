@@ -67,6 +67,7 @@
       const feed = document.getElementById('messageFeed');
       with open("chat.txt", "a") as f:
         f.print(input)
+      f.close()
       const text = input.value.trim();
       if (text === "") return;
 
